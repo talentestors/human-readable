@@ -11,13 +11,13 @@ Both solve the same problem from the same research base: AI-generated writing ha
 ## Contents
 
 ```
-zh/human-readable-chinese/     中文版：让中文句子一眼看到主干
+human-readable-chinese/     中文版：让中文句子一眼看到主干
 ├── SKILL.md
 └── references/
     ├── prompt-snippet.md        可直接贴进提示词的精简版（约 450 字 / 120 字）
     └── workitem-templates.md    bug / 需求 / 技术债 三类模板 + 十句改写对照
 
-en/human-readable-english/     English: make the main clause visible at a glance
+human-readable-english/     English: make the main clause visible at a glance
 ├── SKILL.md
 └── references/
     ├── prompt-snippet.md        paste-ready system prompt (~450 / ~120 words)
@@ -48,8 +48,8 @@ en/human-readable-english/     English: make the main clause visible at a glance
 ### Hermes Agent
 
 ```bash
-cp -r zh/human-readable-chinese ~/.hermes/skills/
-cp -r en/human-readable-english ~/.hermes/skills/
+cp -r human-readable-chinese ~/.hermes/skills/
+cp -r human-readable-english ~/.hermes/skills/
 ```
 
 ### Claude Code / other skill runners
