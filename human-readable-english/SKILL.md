@@ -22,7 +22,7 @@ This skill gives you two things:
 
 ### Layer 1: subject and verb drift apart, and working memory overflows
 
-Two words that depend on each other — subject and predicate, verb and object, noun and modifier — must be active in the reader's mind at the same time. Gibson's **Dependency Locality Theory** prices this as *integration cost*: the more material sits between them, the faster the first word's representation decays and the slower the retrieval.
+Two words that depend on each other — subject and predicate, verb and object, noun and modifier — must be active in the reader's mind at the same time. Gibson's **Dependency Locality Theory** (Gibson, 1998, 2000) prices this as *integration cost*: the more material sits between them, the faster the first word's representation decays and the slower the retrieval.
 
 Grodner & Gibson (2005) showed it cleanly: as they lengthened the relative clause in `The administrator [who the nurse (who was from the clinic)] supervised…`, reading time at `supervised` rose steadily.
 
@@ -36,17 +36,17 @@ Nobody knows what the subject is doing until `was mitigated`, twenty-eight words
 
 Readers predict. See a subject, and you pre-activate the predicates it plausibly takes. High-frequency pairings ("the user clicks the button") land instantly; low-frequency pairings ("this redesign breathed new life into the funnel") miss, and the reader has to reclassify.
 
-The 2026 NYU / UT Austin preprint *Why is AI-generated language so hard to understand?* (arXiv:2610.29162) measured this across nine frontier and near-frontier models. One feature it found overrepresented: **inanimate subjects with animate verbs** — abstract nouns doing things only living things do. "This approach *eats* latency." "The pipeline *noticed* the anomaly." "Silence *built* a milestone."
+Clark, Martin & Mahowald (2026) — NYU and UT Austin, preprint [arXiv:2610.29162](https://arxiv.org/abs/2610.29162), *Why is AI-generated language so hard to understand?* — measured this across nine frontier models plus five small ones. One feature it found overrepresented: **inanimate subjects with animate verbs** — abstract nouns doing things only living things do. "This approach *eats* latency." "The pipeline *noticed* the anomaly." "Silence *built* a milestone."
 
-The authors also ran a **round-trip translation baseline** (to show this isn't just formal register) and a **length-penalty fine-tuning experiment** (to show it's a preference the model develops).
+They also ran a **round-trip translation baseline** — the same content paraphrased by translating out and back — and the models' output was still harder than that, so this isn't just formal register. And they reproduced it with a **length-penalty fine-tune**, so it's a preference the model develops.
 
 **This is smell #2.** The test is simple: **could a specific person or object actually do this?** If not, change the subject or change the verb.
 
 ### Layer 3: information density got compressed into a brick
 
-The **Uniform Information Density** hypothesis says speakers instinctively spread high-information material out and pad the hard parts with cheap material — function words, optional conjunctions, explicit clause markers. English's optional `that` is a 200-millisecond airbag.
+The **Uniform Information Density** hypothesis (Levy & Jaeger, 2007) says speakers instinctively spread high-information material out and pad the hard parts with cheap material — function words, optional conjunctions, explicit clause markers. English's optional `that` is a 200-millisecond airbag.
 
-Models remove nearly all of these speed bumps: dropped complementizers, stacked nouns, nouns turned into verbs, very long clauses, rare collocations. A widely accepted explanation is **length penalties during post-training** — reward shorter output, and "short" helps the model (fewer tokens) while hurting the reader (more effort). The paper reproduces the effect by fine-tuning a model under a length penalty; it drifts away from human-like usage.
+Models remove nearly all of these speed bumps: dropped complementizers, stacked nouns, nouns turned into verbs, very long clauses, rare collocations. The 2026 paper's explanation is **length penalties during post-training** — reward shorter output, and "short" helps the model (fewer tokens) while hurting the reader (more effort). It backs this with a proof of concept: fine-tune a model under a length penalty, and its usage drifts away from human-like, toward exactly the constructions above.
 
 **This matters because it rules out the obvious fix.** Mechanically chopping sentences is wrong. Strip the connectives and the reader must reconstruct the logic; cognitive load goes *up*. **Compress local density peaks, not sentence count.**
 
@@ -292,8 +292,23 @@ See `references/prompt-snippet.md` — about 400 words, for use as a system prom
 
 ## References
 
-- Clark, T. H., Martin, M. B., & Mahowald, K. (2026). *Why is AI-generated language so hard to understand?* arXiv:2610.29162
-- Gibson, E. (2000). Dependency locality theory: A distance-based theory of linguistic complexity.
-- Grodner, D., & Gibson, E. (2005). Consequences of the serial nature of linguistic input for sentential complexity.
-- Levy, R., & Jaeger, T. F. (2007). Speakers optimize information density through syntactic reduction.
-- Sword, H. (2012). *Stylish Academic Writing* — "zombie nouns".
+Cite author and year, not "research shows". Every principle above traces to one of these.
+
+**Primary source — why AI text is hard to read**
+
+- Clark, T. H., Martin, M. B., & Mahowald, K. (2026). *Why is AI-generated language so hard to understand?* arXiv:2610.29162. <https://arxiv.org/abs/2610.29162>
+  NYU (first author) + UT Austin. Nine frontier models plus five small ones; constructions measured include object relatives, long dependencies, low-frequency n-grams, stacked nouns, and inanimate subjects with animate verbs; includes a round-trip translation baseline and a length-penalty fine-tuning experiment.
+  **What this skill takes from it:** Layer 2 (inanimate subjects + animate verbs), and in Layer 3 the measured set of removed speed bumps plus the information-density / length-penalty account and its proof of concept.
+
+**Underlying theory — where each layer actually comes from**
+
+- Gibson, E. (1998). Linguistic complexity: Locality of syntactic dependencies. *Cognition*, 68(1), 1–76.
+- Gibson, E. (2000). Dependency locality theory: A distance-based theory of linguistic complexity. — the integration-cost account behind Layer 1.
+- Grodner, D., & Gibson, E. (2005). Consequences of the serial nature of linguistic input for sentential complexity. *Cognitive Science*, 29(2), 261–290. — the reading-time evidence for Layer 1.
+- Levy, R., & Jaeger, T. F. (2007). Speakers optimize information density through syntactic reduction. *NIPS 19*. — the UID hypothesis in Layer 3. **UID is not from the 2026 paper**; that paper uses it to explain model behavior.
+- Jaeger, T. F. (2010). Redundancy and reduction: Speakers manage syntactic information density. *Cognitive Psychology*, 61(1), 23–62. — the fuller experimental treatment.
+
+**Writing craft (not experimental papers)**
+
+- Sword, H. (2012). *Stylish Academic Writing*. Harvard University Press. — "zombie nouns".
+- On "mechanical chopping makes text harder": a stable observation in the text-simplification literature. Cited here as a general finding, not tied to one paper — replace with a verifiable citation if you need one.

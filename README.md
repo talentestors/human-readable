@@ -71,7 +71,7 @@ If you only want the rules injected into another agent, take `references/prompt-
 
 ## Research base
 
-- Clark, T. H., Martin, M. B., & Mahowald, K. (2026). *Why is AI-generated language so hard to understand?* [arXiv:2610.29162](https://arxiv.org/abs/2610.29162) — NYU & UT Austin. Nine frontier models use inanimate subjects with animate verbs and low-frequency n-grams more often than human writing and round-trip translations; a length-penalty fine-tune reproduces the drift.
+- Clark, T. H., Martin, M. B., & Mahowald, K. (2026). *Why is AI-generated language so hard to understand?* [arXiv:2610.29162](https://arxiv.org/abs/2610.29162) — NYU (Clark) + UT Austin (Martin, Mahowald). Nine frontier models plus five small ones; more inanimate subjects with animate verbs and more low-frequency n-grams than human writing and round-trip translations; a length-penalty fine-tune reproduces the drift. **This paper owns layers 2–3 of both skills**; dependency locality and UID come from earlier work, credited separately.
 - Gibson, E. (2000). Dependency locality theory.
 - Grodner, D., & Gibson, E. (2005). Consequences of the serial nature of linguistic input for sentential complexity.
 - Levy, R., & Jaeger, T. F. (2007). Speakers optimize information density through syntactic reduction.

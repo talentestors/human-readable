@@ -22,7 +22,7 @@ AI 写的中文，字都认识、语法也没错，但读三行太阳穴就发�
 
 ### 第一层：主语和谓语隔太远，工作记忆溢出了
 
-句子里有依存关系的两个词（主语—谓语、动词—宾语、名词—修饰语），在阅读时要被同时激活。Gibson 的**依存距离理论（DLT）**把它算成「整合成本」：两者之间插入的成分越多，读到第二个词时，第一个词的表征衰减越厉害，检索越慢。
+句子里有依存关系的两个词（主语—谓语、动词—宾语、名词—修饰语），在阅读时要被同时激活。Gibson 的**依存距离理论（DLT；Gibson, 1998, 2000）**把它算成「整合成本」：两者之间插入的成分越多，读到第二个词时，第一个词的表征衰减越厉害，检索越慢。
 
 Grodner & Gibson (2005) 的实验很干净：把 `The administrator [who the nurse (who was from the clinic)] supervised…` 的插入内容一层层加长，读者读到 `supervised` 时的阅读时间随之上升。
 
@@ -36,19 +36,21 @@ Grodner & Gibson (2005) 的实验很干净：把 `The administrator [who the nur
 
 大脑读句子时会预测：看到一个主语，就预判它可能带哪些谓语。如果搭配是高频的（「用户点击按钮」），预测命中，读得飞快；如果是低频的（「这次改版呼吸到了增长的空间」），预测落空，要停下来重新分类。
 
-NYU + UT Austin 2026 年的预印本（arXiv:2610.29162，*Why is AI-generated language so hard to understand?*）在 9 个前沿模型上测了六类特征，其中一条就是 **inanimate subjects + animate verbs**：拿无生命的名词当主语，配一个只有活物才会做的动词——「这个方案吃掉了延迟」「沉默竖起了里程碑」「这条链路自己意识到了问题」。
+Clark, Martin & Mahowald（NYU + UT Austin，2026，预印本 [arXiv:2610.29162](https://arxiv.org/abs/2610.29162)，*Why is AI-generated language so hard to understand?*）在 9 个前沿模型（另加 5 个小模型）的生成文本上，逐项测量了心理语言学里已知会拖慢阅读的若干特征——包括宾语关系从句、长依存、低频 n-gram、名词堆叠。其中一条就是 **inanimate subjects + animate verbs**：拿无生命的名词当主语，配一个只有活物才会做的动词——「这个方案吃掉了延迟」「沉默竖起了里程碑」「这条链路自己意识到了问题」。
 
-对照实验还做了**回译基线**（英→日→英），证明这不是「正式文体」的通病，而是模型自己的偏好。
+论文还设了**回译基线**（round-trip translation：把同一段话译成另一种语言再译回来，得到意思相同、措辞不同的对照文本）：模型生成文本的难读特征，比这类回译改写还多。这证明它不是「正式文体」的通病，而是模型自身的偏好。
 
 **这就是你说的第 2 点。** 判断方法很简单：**这个动作，一个具体的人或物能不能做？** 不能，就换主语或换动词。
 
 ### 第三层：信息密度被压成了压缩饼干
 
-心理语言学的**均匀信息密度假说（UID）**说：人会本能地把高信息量的成分摊开，在难懂的地方掺「水」——虚词、可省的连词、显式从句标记。英文里那个可省可不省的 `that`，就是一个 200 毫秒的缓冲气囊。
+心理语言学的**均匀信息密度假说（UID；Levy & Jaeger, 2007）**说：人会本能地把高信息量的成分摊开，在难懂的地方掺「水」——虚词、可省的连词、显式从句标记。英文里那个可省可不省的 `that`，就是一个 200 毫秒的缓冲气囊。
 
-研究发现，模型几乎把这些减速带全拆了：**删引导词、名词堆叠、名词转动词、超长难句、低频新搭配**。为什么？一个被广泛接受的解释是**后训练阶段的长度惩罚**——奖励更短的表达，而「短」对模型有利（省 token）、对读者有害（多花脑力）。研究者用小模型加长度惩罚复现了这个偏好，甚至泛化到了训练中没见过的句式。
+而 Clark, Martin & Mahowald (2026) 实测发现，模型几乎把这些减速带全拆了：**省略宾语关系从句的 `that`（reduced object relatives）、名词堆叠（stacked nouns）、更长的依存（longer dependencies）、低频 n-gram**。
 
-**这条尤其重要，因为它反着告诉我们：一味把句子砍短是错的。** 砍掉连接词、把长句机械剁成短句，句长好看了，读者却要自己脑补逻辑关系，认知负荷不降反升（Google 的文本简化研究明确踩过这个坑）。**要压的是「局部密度峰值」，不是句子数量。**
+为什么？他们提出的解释是：人类语言是为「成功沟通」优化的，而 AI 文本越来越是为数学、代码、推理优化的，后者的压力指向**信息密度**而非可读性。他们用**长度惩罚微调**一个语言模型做概念验证——被奖励写短之后，模型的用语确实向「不似人类」的方向漂移。
+
+**这条尤其重要，因为它反着告诉我们：一味把句子砍短是错的。** 砍掉连接词、把长句机械剁成短句，句长好看了，读者却要自己脑补逻辑关系，认知负荷不降反升（文本简化的实测研究反复踩过这个坑）。**要压的是「局部密度峰值」，不是句子数量。**
 
 ---
 
@@ -287,3 +289,28 @@ NYU + UT Austin 2026 年的预印本（arXiv:2610.29162，*Why is AI-generated l
 ## 八、附：可以直接贴进提示词的精简版
 
 见 `references/prompt-snippet.md`——约 400 字，用于给其他 Agent 或 workitem 模板当系统提示。
+
+---
+
+## 参考文献
+
+本 skill 的每条原理都对应下面某一项，引用时请连作者和年份一起写，不要只说「有研究表明」。
+
+**核心来源（AI 文本为什么难读）**
+
+- Clark, T. H., Martin, M. B., & Mahowald, K. (2026). *Why is AI-generated language so hard to understand?* arXiv:2610.29162. <https://arxiv.org/abs/2610.29162>
+  —— NYU（第一作者）＋ UT Austin。9 个前沿模型 + 5 个小模型；实测特征含宾语关系从句、长依存、低频 n-gram、名词堆叠、无生主语配有生动词；设回译基线（round-trip translation）；用长度惩罚微调做机制验证。
+  **本 skill 引用的具体结论**：第二层（inanimate subjects + animate verbs）、第三层（模型拆掉 UID 减速带、长度惩罚假说及其实验验证）都出自此文。
+
+**基础理论（各段原理的原始出处）**
+
+- Gibson, E. (1998). Linguistic complexity: Locality of syntactic dependencies. *Cognition*, 68(1), 1–76.
+- Gibson, E. (2000). Dependency locality theory: A distance-based theory of linguistic complexity. In *Image, Language, Brain*. —— 第一层「整合成本」的理论出处。
+- Grodner, D., & Gibson, E. (2005). Consequences of the serial nature of linguistic input for sentential complexity. *Cognitive Science*, 29(2), 261–290. —— 第一层的实验证据（嵌套关系从句的阅读时间）。
+- Levy, R., & Jaeger, T. F. (2007). Speakers optimize information density through syntactic reduction. *NIPS 19*. —— 第三层 UID 假说的出处。**注意：UID 不是 2026 年那篇提出的**，那篇是用它来解释模型行为。
+- Jaeger, T. F. (2010). Redundancy and reduction: Speakers manage syntactic information density. *Cognitive Psychology*, 61(1), 23–62. —— UID 的完整实验版本，需要更硬的依据时引这篇。
+
+**写作侧的常识来源（非实验论文）**
+
+- Sword, H. (2012). *Stylish Academic Writing*. Harvard University Press. —— "zombie nouns"（名词化吃掉动词）这个提法。
+- 关于「机械断句反而更难读」：这是文本简化（text simplification）领域的稳定观察，本 skill 按一般结论引用，未绑定单篇论文。若需引用具体文献，自行补一篇可核验的替代。
