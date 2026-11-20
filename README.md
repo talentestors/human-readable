@@ -4,6 +4,8 @@ Two skills for writing text a human can read in one pass — one for Chinese, on
 
 Both solve the same problem from the same research base: AI-generated writing has correct grammar and all the right words, yet it strips out the buffers a reader needs. The sentences don't fail on vocabulary; they fail on **structure**.
 
+**理论基线：[Clark, Martin & Mahowald (2026)](https://arxiv.org/abs/2610.29162)，*Why is AI-generated language so hard to understand?*（NYU + UT Austin，arXiv:2610.29162）。** 两版 skill 的病理分类、诊断指标和机制解释都长在这篇上；Gibson 的依存距离理论和 Levy & Jaeger 的 UID 假说是它接续的底层理论，按各自出处单独标注。
+
 写给谁读：写 workitem / bug 描述 / 需求文档 / 复盘 / 汇报材料的人，以及替他们写字或改字的 Agent。
 
 ---

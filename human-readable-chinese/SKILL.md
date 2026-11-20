@@ -18,7 +18,19 @@ AI 写的中文，字都认识、语法也没错，但读三行太阳穴就发�
 
 ---
 
-## 一、原理：为什么难读（三层，按因果排）
+## 一、原理：为什么难读
+
+**理论基线：Clark, Martin & Mahowald (2026)，*Why is AI-generated language so hard to understand?*（NYU + UT Austin，[arXiv:2610.29162](https://arxiv.org/abs/2610.29162)）。**
+
+这篇论文做了本 skill 依赖的三件事：在 9 个前沿模型（另加 5 个小模型）的输出上，把「人读起来吃力」的心理语言学特征逐项量化；用回译基线排除「正式文体」这个替代解释；用长度惩罚微调做机制验证。
+
+下面三层按因果排，每层都直接对应论文测到的某一类特征：
+
+- **第一层 → 距离类**：长依存（longer dependencies）
+- **第二层 → 搭配类**：无生主语 + 有生动词（inanimate subjects with animate verbs）
+- **第三层 → 密度类**：被拆掉的减速带（reduced relatives、stacked nouns、低频 n-gram）
+
+第一层和第三层的底层理论分别来自 Gibson 与 Levy & Jaeger；**这篇论文的价值在于把它们接到 LLM 上，并给出实测数据和机制解释**——本 skill 的骨架就长在这篇上。
 
 ### 第一层：主语和谓语隔太远，工作记忆溢出了
 
@@ -296,7 +308,7 @@ Clark, Martin & Mahowald（NYU + UT Austin，2026，预印本 [arXiv:2610.29162]
 
 本 skill 的每条原理都对应下面某一项，引用时请连作者和年份一起写，不要只说「有研究表明」。
 
-**核心来源（AI 文本为什么难读）**
+**主文献（本 skill 的理论基线）**
 
 - Clark, T. H., Martin, M. B., & Mahowald, K. (2026). *Why is AI-generated language so hard to understand?* arXiv:2610.29162. <https://arxiv.org/abs/2610.29162>
   —— NYU（第一作者）＋ UT Austin。9 个前沿模型 + 5 个小模型；实测特征含宾语关系从句、长依存、低频 n-gram、名词堆叠、无生主语配有生动词；设回译基线（round-trip translation）；用长度惩罚微调做机制验证。

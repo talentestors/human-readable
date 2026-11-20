@@ -18,7 +18,19 @@ This skill gives you two things:
 
 ---
 
-## Part 1: Why it's hard (three layers, in causal order)
+## Part 1: Why it's hard
+
+**Theoretical baseline: Clark, Martin & Mahowald (2026), *Why is AI-generated language so hard to understand?* (NYU + UT Austin, [arXiv:2610.29162](https://arxiv.org/abs/2610.29162)).**
+
+That paper does the three things this skill rests on: it quantifies, on the output of nine frontier models (plus five small ones), the psycholinguistic features known to slow human reading; it rules out "formal register" with a round-trip translation baseline; and it tests a mechanism with a length-penalty fine-tune.
+
+The three layers below are ordered by cause, and each maps onto a feature class the paper measured:
+
+- **Layer 1 → distance**: longer dependencies
+- **Layer 2 → collocation**: inanimate subjects with animate verbs
+- **Layer 3 → density**: the removed speed bumps (reduced relatives, stacked nouns, low-frequency n-grams)
+
+The underlying theories behind layers 1 and 3 come from Gibson and from Levy & Jaeger. **What the 2026 paper adds is the connection to LLMs, with measurements and a mechanism** — and that connection is what this skill is built on.
 
 ### Layer 1: subject and verb drift apart, and working memory overflows
 
@@ -294,7 +306,7 @@ See `references/prompt-snippet.md` — about 400 words, for use as a system prom
 
 Cite author and year, not "research shows". Every principle above traces to one of these.
 
-**Primary source — why AI text is hard to read**
+**Primary source — the baseline this skill is built on**
 
 - Clark, T. H., Martin, M. B., & Mahowald, K. (2026). *Why is AI-generated language so hard to understand?* arXiv:2610.29162. <https://arxiv.org/abs/2610.29162>
   NYU (first author) + UT Austin. Nine frontier models plus five small ones; constructions measured include object relatives, long dependencies, low-frequency n-grams, stacked nouns, and inanimate subjects with animate verbs; includes a round-trip translation baseline and a length-penalty fine-tuning experiment.
