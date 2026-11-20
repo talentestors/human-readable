@@ -14,16 +14,24 @@ Both solve the same problem from the same research base: AI-generated writing ha
 
 ```
 human-readable-chinese/     中文版：让中文句子一眼看到主干
-├── SKILL.md
+├── SKILL.md                    入口：核心手法 + 骨架 + 按场景索引（约 3.8 KB）
 └── references/
-    ├── prompt-snippet.md        可直接贴进提示词的精简版（约 450 字 / 120 字）
-    └── workitem-templates.md    bug / 需求 / 技术债 三类模板 + 十句改写对照
+    ├── why-hard.md             三层病理 + 研究出处（DLT / UID / arXiv:2610.29162）
+    ├── diagnosis.md            九种病灶 + 抽主干表 + 三个数别混
+    ├── rewrite-rules.md        R1~R11 逐条手术，带改前改后
+    ├── checklist.md            五步流程 + 自检清单 + 翻车清单 + 量化指标
+    ├── workitem-templates.md   bug / 需求 / 技术债 三类模板 + 十句改写对照
+    └── prompt-snippet.md       可直接贴进提示词的精简版（约 450 字 / 120 字）
 
 human-readable-english/     English: make the main clause visible at a glance
-├── SKILL.md
+├── SKILL.md                    entry point: core move + skeleton + index (~4 KB)
 └── references/
-    ├── prompt-snippet.md        paste-ready system prompt (~450 / ~120 words)
-    └── workitem-templates.md    bug / requirement / tech-debt templates + 10 rewrites
+    ├── why-hard.md             three pathologies + citations
+    ├── diagnosis.md            9 smells + spine table + the three numbers
+    ├── rewrite-rules.md        R1–R11, each with before/after
+    ├── checklist.md            5 steps + checklist + failure list + metrics
+    ├── workitem-templates.md   bug / requirement / tech-debt templates + 10 rewrites
+    └── prompt-snippet.md       paste-ready system prompt (~470 / ~130 words)
 ```
 
 ---
@@ -33,8 +41,8 @@ human-readable-english/     English: make the main clause visible at a glance
 | | 中文版 | English |
 |---|---|---|
 | 核心原理 | 依存距离 / 语义整合 / 均匀信息密度 | dependency locality / selectional fit / uniform information density |
-| 可数病症 | 8 种（主谓远隔、空壳动词、无生主语……） | 8 smells (subject-verb distance, light verbs, inanimate subjects…) |
-| 改写规则 | R1–R9 | R1–R9 |
+| 可数病症 | **9 种**（主谓远隔、空壳动词、无生主语…… + 比喻过载） | **9 smells** (subject-verb distance, light verbs, inanimate subjects… + metaphor overload) |
+| 改写规则 | **R1–R11**（R10 数字须有出处、R11 比喻配额） | **R1–R11** (R10 traceable numbers, R11 metaphor quota) |
 | 主战场 | workitem 五段式 | five-section work item |
 | 执行流程 | 抽主干表 → 按病开刀 → 补连接 → 保真核对 → 朗读 | spine table → operate by symptom → restore links → verify fidelity → read aloud |
 
