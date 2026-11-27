@@ -1,4 +1,4 @@
-# human-readable
+# [human-readable](https://github.com/talentestors/human-readable)
 
 Two skills that make AI-written text readable in one pass — `human-readable-chinese` for Chinese, `human-readable-english` for English.
 
