@@ -19,6 +19,8 @@ The sentences don't fail on vocabulary. They fail on structure.
 
 ```
 human-readable-chinese/     中文版：让中文句子一眼看到主干
+├── README.md                skill-level readme, links back to this repo
+├── LICENSE                  MIT
 ├── SKILL.md                 entry: core move + skeleton + index (~3.8 KB)
 └── references/
     ├── why-hard.md          three pathologies + citations (DLT / UID / arXiv:2610.29162)
@@ -29,6 +31,8 @@ human-readable-chinese/     中文版：让中文句子一眼看到主干
     └── prompt-snippet.md    paste-ready prompt (~450 字 / 120 字)
 
 human-readable-english/     English: make the main clause visible at a glance
+├── README.md                skill-level readme, links back to this repo
+├── LICENSE                  MIT
 ├── SKILL.md                 entry: core move + skeleton + index (~4 KB)
 └── references/
     ├── why-hard.md          three pathologies + citations
